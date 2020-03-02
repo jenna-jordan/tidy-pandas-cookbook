@@ -33,11 +33,17 @@ Third normal form was summed up by William Kent (author of "Data & Reality") as:
 
 ## Tidy Data & R... & Python?
 
-The tidy data philosophy is the foundation for the collection of R packages called the "tidyverse", which allow users to easily transform, model, and visualize data. But while the tidyverse has completely overtaken the R data science ecosystem (although it is not without its detractors), there is not a true equivalent in the Python data science ecosystem. But that doesn't mean that the principles of tidy data and third normal form cannot be applied in the Python ecosystem. 
+The tidy data philosophy is the foundation for the collection of R packages called the "tidyverse", which allow users to easily transform, model, and visualize data. But while the tidyverse currently dominates the R data science ecosystem (although it is not without its detractors), there is not a true equivalent in the Python data science ecosystem. But that doesn't mean that the principles of tidy data and third normal form cannot be applied in the Python ecosystem. 
 
 For python users, most data wrangling tasks are accomplished with the pandas library. Data tidying is just one of the many tasks that could be described as data wrangling... but in my opinion it is the most important. The pandas library is extremely flexible and can manipulate tabular datasets into whatever form a user needs. However, this flexibility also means that it may be difficult for non-experts to fully utilize the library.
 
-This cookbook was developed for those users who may be less familiar or comfortable with pandas, but want to transform their datasets into a tidy form within the Python ecosystem. The recipes in this cookbook will allow users to **explore** their datasets in order to discover the pre-existing functional dependencies between attributes (columns), primary (and candidate) keys, and multivalued attributes; **transform** their datasets by decomposing the table into new tables with proper functional dependencies, creating new identifiers, separating multivalued attributes, and otherwise normalizing the dataset(s); and finally **verify** that the new set of tables obeys all necessary uniqueness constraints (primary keys), integrity constraints (foreign keys), check constraints, and otherwise conforms to a relational model such that it could be loaded into a database. While actually creating the database is not necessary, the process of tidying the data will result in tables that are ready to be loaded into a relational database - and pandas' sqlite3 API makes this last step easy. 
+This cookbook was developed for those users who may be less familiar or comfortable with pandas, but want to transform their datasets into a tidy form within the Python ecosystem. The recipes in this cookbook will allow users to: 
+
+- **explore** their datasets in order to detangle functional dependencies and identify candidate keys
+- **transform** their datasets by decomposing the table into new tables with proper functional dependencies, creating new identifiers, separating multivalued attributes, and otherwise normalizing the dataset(s
+- **verify** that the new set of tables obey all necessary uniqueness constraints (primary keys), integrity constraints (foreign keys), check constraints, and otherwise conform to a relational model such that it could be loaded into a database. 
+
+While actually creating the database is not necessary, the process of tidying the data will result in tables that are ready to be loaded into a relational database (and pandas' sqlite3 API makes this last optional step easy). 
 
 ## The example datasets
 
