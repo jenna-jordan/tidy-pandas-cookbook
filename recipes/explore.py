@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 from itertools import combinations
 
 # recipes for exploring datasets
