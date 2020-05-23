@@ -26,21 +26,6 @@ def find_candidate_keys(df, max_columns=3):
     return candidate_keys
 
 
-def find_dependent_columns(df, key:list):
-    dependent_columns = []
-    columns = df.columns.tolist()
-    # remove key columns from list of columns to check
-    for k in key:
-        columns.remove(k)
-    # check if each column as 0 or 1 unique values per key value
-    for c in columns:
-        ue = df.groupby(key)[c].nunique().unique().tolist()
-        if (ue == [1]) or (ue == [0]) or (ue == [0, 1]):
-            dependent_columns.append(c)
-    
-    return dependent_columns
-
-
 def find_no_variance_columns(df):
     no_var_columns = []
     columns = df.columns.tolist()
@@ -59,3 +44,21 @@ def find_low_variance_columns(df, threshold:int):
             low_var_columns.append((c, df[c].nunique()))
     
     return low_var_columns
+
+
+def find_dependent_columns(df, key:list, drop_no_variance=True):
+    dependent_columns = []
+    columns = df.columns.tolist()
+    if drop_no_variance:
+        no_var_columns = find_no_variance_columns(df)
+        if no_var_columns:
+            for c in no_var_columns:
+                columns.remove(c)
+    for k in key:
+        columns.remove(k)
+    for c in columns:
+        unique_elements = df.groupby(key)[c].nunique().unique().tolist()
+        if (unique_elements == [1]) or (unique_elements == [0]) or (unique_elements == [0, 1]) or (unique_elements == [1, 0]):
+            dependent_columns.append(c)
+    
+    return dependent_columns
